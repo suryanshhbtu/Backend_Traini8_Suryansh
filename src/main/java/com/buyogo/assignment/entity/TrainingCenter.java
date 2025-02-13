@@ -5,7 +5,9 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 import java.util.List;
-
+/**
+ * Entity with jakarta Validations
+ * */
 @Entity
 @Table(name="training_center_courses")
 @Valid
@@ -25,7 +27,8 @@ public class TrainingCenter {
     @Pattern(regexp = "^[a-zA-Z0-9]{12}$", message = "CenterCode must be exactly 12 alphanumeric characters")
     @Column(name = "center_code")
     private String centerCode;
-    
+
+//    Embeddable class object
     @Embedded
     private Address address;
 

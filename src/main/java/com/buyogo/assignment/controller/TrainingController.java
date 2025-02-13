@@ -24,6 +24,9 @@ public class TrainingController {
 		this.trainingService = trainingService;
 	}
 
+	/**
+		Endpoint to get all Training Center
+	*/
 	@GetMapping("/list")
 	public ResponseEntity<List<TrainingCenter>> listTrainingCenters() {
 		logger.info("Fetching all training centers...");
@@ -31,7 +34,9 @@ public class TrainingController {
 		logger.info("Fetched {} training centers", trainingCenters.size());
 		return new ResponseEntity<>(trainingCenters, HttpStatus.OK);
 	}
-
+	/**
+	   Endpoint to Fetch using id
+	 */
 	@GetMapping("/findById")
 	public ResponseEntity<TrainingCenter> findCenterById(@RequestParam("id")  int id) {
 		logger.info("Fetching training center with ID: {}", id);
@@ -43,7 +48,9 @@ public class TrainingController {
 		logger.info("Training center found: {}", trainingCenter);
 		return new ResponseEntity<>(trainingCenter, HttpStatus.OK);
 	}
-
+	/**
+	 Endpoint to create new entry
+	 */
 	@PostMapping("/save")
 	public ResponseEntity<TrainingCenter> addTrainingCenterRequest(@Valid @RequestBody TrainingCenter trainingCenter) {
 		logger.info("Saving new training center: {}", trainingCenter);
@@ -51,7 +58,9 @@ public class TrainingController {
 		logger.info("Training center saved successfully with ID: {}", trainingCenter.getId());
 		return new ResponseEntity<>(trainingCenter, HttpStatus.CREATED);
 	}
-
+	/**
+	 Endpoint to delete using id
+	 */
 	@DeleteMapping("/deleteById")
 	public ResponseEntity<String> deleteTrainingCenter(@RequestParam("id")  int id) {
 		logger.info("Deleting training center with ID: {}", id);
@@ -59,7 +68,9 @@ public class TrainingController {
 		logger.info("Training center with ID {} deleted successfully", id);
 		return new ResponseEntity<>("Training Center Deleted Successfully", HttpStatus.OK);
 	}
-
+	/**
+	 Endpoint Delete all centers
+	 */
 	@DeleteMapping("/deleteAll")
 	public ResponseEntity<String> deleteAllTrainingCenters() {
 		logger.info("Deleting all training centers...");

@@ -49,7 +49,7 @@ After the build is successful, you can run the application using the following c
 mvn spring-boot:run
 ```
 
-The application will start on port 4400 by default.
+The application will start on port 8080 by default.
 
 ### 4. Test the Endpoints
 

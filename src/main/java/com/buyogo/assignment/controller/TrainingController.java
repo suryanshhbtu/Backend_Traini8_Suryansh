@@ -31,7 +31,6 @@ public class TrainingController {
 	public ResponseEntity<List<TrainingCenter>> listTrainingCenters() {
 		logger.info("Fetching all training centers...");
 		List<TrainingCenter> trainingCenters = trainingService.findAll();
-		logger.info("Fetched {} training centers", trainingCenters.size());
 		return new ResponseEntity<>(trainingCenters, HttpStatus.OK);
 	}
 	/**
@@ -42,10 +41,8 @@ public class TrainingController {
 		logger.info("Fetching training center with ID: {}", id);
 		TrainingCenter trainingCenter = trainingService.findById(id);
 		if (trainingCenter == null) {
-			logger.warn("Training center with ID {} not found", id);
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		logger.info("Training center found: {}", trainingCenter);
 		return new ResponseEntity<>(trainingCenter, HttpStatus.OK);
 	}
 	/**
@@ -55,7 +52,6 @@ public class TrainingController {
 	public ResponseEntity<TrainingCenter> addTrainingCenterRequest(@Valid @RequestBody TrainingCenter trainingCenter) {
 		logger.info("Saving new training center: {}", trainingCenter);
 		trainingService.save(trainingCenter);
-		logger.info("Training center saved successfully with ID: {}", trainingCenter.getId());
 		return new ResponseEntity<>(trainingCenter, HttpStatus.CREATED);
 	}
 	/**
@@ -65,7 +61,6 @@ public class TrainingController {
 	public ResponseEntity<String> deleteTrainingCenter(@RequestParam("id")  int id) {
 		logger.info("Deleting training center with ID: {}", id);
 		trainingService.deleteById(id);
-		logger.info("Training center with ID {} deleted successfully", id);
 		return new ResponseEntity<>("Training Center Deleted Successfully", HttpStatus.OK);
 	}
 	/**
@@ -75,7 +70,6 @@ public class TrainingController {
 	public ResponseEntity<String> deleteAllTrainingCenters() {
 		logger.info("Deleting all training centers...");
 		trainingService.deleteAll();
-		logger.info("All training centers deleted successfully");
 		return new ResponseEntity<>("All training centers deleted successfully", HttpStatus.OK);
 	}
 

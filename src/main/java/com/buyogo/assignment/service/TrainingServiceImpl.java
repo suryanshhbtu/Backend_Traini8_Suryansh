@@ -28,7 +28,6 @@ public class TrainingServiceImpl implements TrainingService {
     public List<TrainingCenter> findAll() {
         logger.info("Fetching all training centers...");
         List<TrainingCenter> trainingCenters = trainingRepository.findAll();
-        logger.info("Fetched {} training centers", trainingCenters.size());
         return trainingCenters;
     }
 
@@ -37,10 +36,8 @@ public class TrainingServiceImpl implements TrainingService {
         logger.info("Fetching training center with ID: {}", theId);
         Optional<TrainingCenter> result = trainingRepository.findById(theId);
         if (result.isPresent()) {
-            logger.info("Found training center: {}", result.get());
             return result.get();
         } else {
-            logger.warn("Training center with ID {} not found", theId);
             throw new RuntimeException("Did not find training center with id - " + theId);
         }
     }
@@ -51,7 +48,6 @@ public class TrainingServiceImpl implements TrainingService {
         // Set the createdOn timestamp before saving
         trainingCenter.setCreatedOn(System.currentTimeMillis());
         TrainingCenter savedTrainingCenter = trainingRepository.save(trainingCenter);
-        logger.info("Training center saved successfully with ID: {}", savedTrainingCenter.getId());
         return savedTrainingCenter;
     }
 
@@ -59,16 +55,13 @@ public class TrainingServiceImpl implements TrainingService {
     public void deleteById(int theId) {
         logger.info("Attempting to delete training center with ID: {}", theId);
         if (!trainingRepository.existsById(theId)) {
-            logger.warn("Training center with ID {} not found for deletion", theId);
             throw new EntityNotFoundException("Training with ID " + theId + " not found.");
         }
         trainingRepository.deleteById(theId);
-        logger.info("Training center with ID {} deleted successfully", theId);
     }
 
     @Override
     public void deleteAll() {
-        logger.info("Deleting all training centers...");
         trainingRepository.deleteAll();
         logger.info("All training centers deleted successfully");
     }

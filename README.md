@@ -112,4 +112,4 @@ This will return a list of all training centers stored .
 DELETE http://localhost:8080/courses/deleteById?id=1
 ```
 
-This will delete training centers having id as 2.
+This will delete training center having id as 2.
